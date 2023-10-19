@@ -19,21 +19,18 @@ NEWSPIDER_MODULE = "aruodas.spiders"
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
-PROXY_POOL_ENABLED = True
+SCRAPEOPS_API_KEY = '0ad7fda4-a4f6-448b-9b6a-29ff61be2460'
+SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = 'https://headers.scrapeops.io/v1/browser-headers'
+SCRAPEOPS_FAKE_USER_AGENT_ACTIVE = True
+SCRAPEOPS_NUM_RESULTS = 50
+
 
 DOWNLOADER_MIDDLEWARES = {
-    # ...
-    'scrapy_proxy_pool.middlewares.ProxyPoolMiddleware': 610,
-    'scrapy_proxy_pool.middlewares.BanDetectionMiddleware': 620,
-    # ...
+    # 'aruodas.middlewares.BookscraperDownloaderMiddleware': 543,
+    'aruodas.middlewares.ScrapeOpsFakeUserAgentMiddleware': 543,
 }
 
-DOWNLOADER_MIDDLEWARES = {
-    'aruodas.middlewares.RotateUserAgentMiddleware': 543,
-}
-
-CONCURRENT_REQUESTS = 1  # Set to limit concurrent requests
-DOWNLOAD_DELAY = 2  # Set a delay (in seconds) between requests
+# PROXY_POOL_ENABLED = True
 
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
